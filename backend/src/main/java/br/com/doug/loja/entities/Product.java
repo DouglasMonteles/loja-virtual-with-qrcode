@@ -25,10 +25,13 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50, unique = true, nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Float price;
 
+    @Column(length = 100, nullable = true)
     private String description;
 
     public Product(ProductDto productDto) {
