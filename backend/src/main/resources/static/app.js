@@ -14,6 +14,8 @@ function setConnected(connected) {
 
 function connect() {
     var socket = new SockJS('/product-ws');
+    console.log("Dados do socket");
+    console.log(socket);
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
