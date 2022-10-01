@@ -1,0 +1,7 @@
+<div *ngIf="(products$ | async) as productPage">
+  <div
+    *ngFor="let product of productPage.content"
+  >
+    Id: {{product.id}} - Nome: {{product.name}} - Preço: {{product.price | currency: 'BRL'}}
+  </div>
+</div>
