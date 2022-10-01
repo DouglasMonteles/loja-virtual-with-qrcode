@@ -1,1 +1,8 @@
-<p>cart works!</p>
+<div>
+  <div
+    *ngFor="let product of products"
+    class=""
+  >
+    Id: {{product.id}} - Nome: {{product.name}} - Preço: {{product.price | currency: 'BRL'}}
+  </div>
+</div>
