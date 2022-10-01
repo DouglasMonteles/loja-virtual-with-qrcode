@@ -5,6 +5,7 @@ import br.com.doug.loja.entities.dtos.ProductDto;
 import br.com.doug.loja.repositories.ProdutRepository;
 import br.com.doug.loja.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProdutRepository produtRepository;
 
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     @Override
     @Transactional
     public ProductDto insert(ProductDto productDto) {
@@ -21,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
         product = produtRepository.save(product);
 
         return new ProductDto(product);
+    }
+
+    @Override
+    public void notifyAboutInsertionOfProduct(String userId, ProductDto productDto) {
+        this.simpMessagingTemplate.convertAndSendToUser(userId, "/topic/product-added", productDto);
     }
 
 }

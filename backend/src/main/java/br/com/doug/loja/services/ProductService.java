@@ -6,4 +6,6 @@ public interface ProductService {
 
     public ProductDto insert(ProductDto productDto);
 
+    public void notifyAboutInsertionOfProduct(String userId, ProductDto productDto);
+
 }

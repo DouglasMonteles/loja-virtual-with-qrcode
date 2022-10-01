@@ -4,10 +4,7 @@ import br.com.doug.loja.entities.dtos.ProductDto;
 import br.com.doug.loja.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
@@ -16,6 +13,12 @@ public class ProductResource {
 
     @Autowired
     private ProductService productService;
+
+    @PostMapping("/{userId}")
+    public ResponseEntity<Void> receiveTheProductData(@PathVariable String userId, @RequestBody ProductDto productDto) {
+        this.productService.notifyAboutInsertionOfProduct(userId, productDto);
+        return ResponseEntity.ok().build();
+    }
 
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody ProductDto productDto) {
