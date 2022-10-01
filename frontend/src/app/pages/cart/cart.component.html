@@ -1,8 +1,5 @@
-<div>
-  <div
-    *ngFor="let product of products"
-    class=""
-  >
-    Id: {{product.id}} - Nome: {{product.name}} - Preço: {{product.price | currency: 'BRL'}}
-  </div>
+<div class="">
+  <app-product-table
+    [data]="products"
+  ></app-product-table>
 </div>

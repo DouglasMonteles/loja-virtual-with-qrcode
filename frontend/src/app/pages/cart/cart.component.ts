@@ -12,7 +12,7 @@ import * as Stomp from 'stompjs';
 export class CartComponent implements OnInit {
 
   stompClient: Stomp.Client = {} as Stomp.Client;
-  products: Product[] = [];
+  products: Product[] = [{ id:1, name: 'teste', price: 12 }];
 
   constructor(
     private _wsService: WebSocketService,

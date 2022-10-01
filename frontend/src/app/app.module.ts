@@ -7,15 +7,19 @@ import { AppComponent } from './app.component';
 
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ProductTableComponent } from './pages/cart/product-table/product-table.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
     CartComponent,
     ProductsComponent,
     SideNavComponent,
+    ProductTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,9 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
 
