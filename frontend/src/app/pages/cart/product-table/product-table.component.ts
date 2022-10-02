@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { ProductTableDataSource, ProductTableItem } from './product-table-dataso
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.css']
 })
-export class ProductTableComponent implements OnInit, AfterViewInit {
+export class ProductTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input()
   data: ProductTableItem[] = [];
@@ -27,6 +27,17 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource = new ProductTableDataSource(this.data);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const data = changes['data'];
+
+    if (!data.firstChange) {
+      this.dataSource = new ProductTableDataSource(data.currentValue);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    }
   }
 
   ngAfterViewInit(): void {

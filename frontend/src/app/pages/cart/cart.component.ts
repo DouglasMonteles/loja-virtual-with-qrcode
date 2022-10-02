@@ -12,7 +12,7 @@ import * as Stomp from 'stompjs';
 export class CartComponent implements OnInit {
 
   stompClient: Stomp.Client = {} as Stomp.Client;
-  products: Product[] = [{ id:1, name: 'teste', price: 12 }];
+  products: Product[] = [{ id:1, name: 'teste', price: 12 },{ id:1, name: 'teste', price: 12 }];
 
   constructor(
     private _wsService: WebSocketService,
@@ -24,12 +24,12 @@ export class CartComponent implements OnInit {
 
   public wsConnection(): void {
     this.stompClient = this._wsService.connect(environment.baseWebSocketUrl);
-    this.stompClient.debug = () => {};
+    //this.stompClient.debug = () => {};
     this.stompClient.connect({}, (frame) => {
       console.log(frame);
       this.stompClient.subscribe('/user/topic/product-added', (message) => {
         const product = JSON.parse(message.body);
-        this.products.push(product);
+        this.products = [...this.products, product];
       });
     },
 
