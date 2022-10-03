@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { ProductTableComponent } from './pages/cart/product-table/product-table.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scanner.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
     ProductsComponent,
     SideNavComponent,
     ProductTableComponent,
+    QrcodeScannerComponent,
   ],
   imports: [
     BrowserModule,
