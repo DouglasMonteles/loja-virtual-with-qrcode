@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseApiUrl: 'http://localhost:8080/api',
   baseWebSocketUrl: 'http://localhost:8080/api/product-ws',
+  cartStorageKey: 'cart-storage-key',
 };
 
 /*

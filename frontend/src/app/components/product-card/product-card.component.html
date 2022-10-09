@@ -19,7 +19,11 @@
   </mat-card-content>
 
   <mat-card-actions class="text-center">
-    <button mat-raised-button color="primary">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addCartItem()"
+    >
       Adicionar ao carrinho
     </button>
   </mat-card-actions>
