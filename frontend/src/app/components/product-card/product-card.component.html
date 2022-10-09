@@ -1,0 +1,26 @@
+<mat-card class="flex max-w-sm">
+  <header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>Produto disponível</mat-card-subtitle>
+  </header>
+
+  <img
+    class="mb-4"
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    [alt]="product.name"
+  >
+
+  <mat-card-content>
+    <p>{{product.description}}</p>
+
+    <strong class="text-xl">
+      {{product.price | currency: 'BRL'}}
+    </strong>
+  </mat-card-content>
+
+  <mat-card-actions class="text-center">
+    <button mat-raised-button color="primary">
+      Adicionar ao carrinho
+    </button>
+  </mat-card-actions>
+</mat-card>

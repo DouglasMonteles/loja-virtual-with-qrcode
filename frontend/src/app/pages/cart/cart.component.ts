@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,7 @@ import * as Stomp from 'stompjs';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   stompClient: Stomp.Client = {} as Stomp.Client;
   products: Product[] = [{ id:1, name: 'teste', price: 12 },{ id:1, name: 'teste', price: 12 }];
@@ -35,6 +35,12 @@ export class CartComponent implements OnInit {
 
     (error) => {
       setTimeout(() => this.wsConnection(), 5000);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.stompClient.disconnect(() => {
+      console.log('stompClient disconnected');
     });
   }
 

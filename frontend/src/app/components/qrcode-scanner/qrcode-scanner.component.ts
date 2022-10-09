@@ -9,6 +9,8 @@ import { QrcodeScannerService } from 'src/app/services/qrcode-scanner.service';
 })
 export class QrcodeScannerComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  isActiveScanner: boolean = false;
+
   @ViewChild('qrVideo')
   videoElem: ElementRef<HTMLVideoElement> = {} as ElementRef<HTMLVideoElement>;
 
@@ -22,6 +24,16 @@ export class QrcodeScannerComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
+    this._startQrCodeScanner();
+  }
+
+  ngOnDestroy(): void {
+    this.qrScanner.destroy();
+  }
+
+  private _startQrCodeScanner(): void {
+    this.isActiveScanner = false;
+
     const onCameraReady = (result: QrScanner.ScanResult) => {
       console.log('resultado: ');
       console.log(result);
@@ -39,10 +51,6 @@ export class QrcodeScannerComponent implements OnInit, AfterViewInit, OnDestroy 
     );
 
     this.qrScanner.start();
-  }
-
-  ngOnDestroy(): void {
-    this.qrScanner.destroy();
   }
 
 }

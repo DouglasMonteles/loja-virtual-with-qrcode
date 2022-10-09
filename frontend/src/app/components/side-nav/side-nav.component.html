@@ -11,8 +11,15 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/products" routerLinkActive="active">Produtos</a>
-      <a mat-list-item routerLink="/cart" routerLinkActive="active">Carrinho</a>
+      <a mat-list-item routerLink="/products" routerLinkActive="active">
+        Produtos
+      </a>
+      <a mat-list-item routerLink="/products/scanner" routerLinkActive="active">
+        Scannear Produtos
+      </a>
+      <a mat-list-item routerLink="/cart" routerLinkActive="active">
+        Carrinho
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -38,7 +45,6 @@
     </mat-toolbar>
 
     <main class="m-2">
-      <app-qrcode-scanner></app-qrcode-scanner>
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>

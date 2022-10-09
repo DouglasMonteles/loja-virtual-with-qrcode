@@ -1,13 +1,17 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { environment } from '../environments/environment';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { ProductTableComponent } from './pages/cart/product-table/product-table.component';
+import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scanner.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,10 +23,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ProductTableComponent } from './pages/cart/product-table/product-table.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scanner.component';
+import { MatCardModule } from '@angular/material/card';
+import { registerLocaleData } from '@angular/common';
+import LOCALE_BR from '@angular/common/locales/pt';
+
+registerLocaleData(LOCALE_BR);
 
 @NgModule({
   declarations: [
@@ -32,6 +38,7 @@ import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scann
     SideNavComponent,
     ProductTableComponent,
     QrcodeScannerComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,7 @@ import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scann
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -55,7 +63,10 @@ import { QrcodeScannerComponent } from './components/qrcode-scanner/qrcode-scann
     }),
   ],
   providers: [
-
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
   ],
   bootstrap: [AppComponent],
 })

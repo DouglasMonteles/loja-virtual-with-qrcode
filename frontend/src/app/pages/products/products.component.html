@@ -1,7 +1,11 @@
 <div *ngIf="(products$ | async) as productPage">
   <div
-    *ngFor="let product of productPage.content"
+    class="w-full flex flex-row flex-wrap gap-4
+    justify-center"
   >
-    Id: {{product.id}} - Nome: {{product.name}} - Preço: {{product.price | currency: 'BRL'}}
+    <app-product-card
+      *ngFor="let product of productPage.content"
+      [product]="product"
+    ></app-product-card>
   </div>
 </div>
