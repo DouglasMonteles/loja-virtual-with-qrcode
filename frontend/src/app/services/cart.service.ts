@@ -14,9 +14,7 @@ export class CartService {
 
   constructor(
     private _localStorageService: LocalStorageService,
-  ) {
-
-  }
+  ) {}
 
   public addCartItem(product: Product): void {
     const cartItems = this._localStorageService.getData<CartItem[]>(environment.cartStorageKey) ?? [];
@@ -39,10 +37,10 @@ export class CartService {
     }
 
     this._localStorageService.setData(environment.cartStorageKey, cartItems);
-    this.cartQuantity$.next(this._getQuantityOfCartItems());
+    this.cartQuantity$.next(this.getQuantityOfCartItems());
   }
 
-  private _getQuantityOfCartItems(): number {
+  public getQuantityOfCartItems(): number {
     const cartItems = this._localStorageService.getData<CartItem[]>(environment.cartStorageKey) ?? [];
     return cartItems
       .map(item => item.quantity)
@@ -51,6 +49,11 @@ export class CartService {
 
   public get cartQuantity(): Observable<number> {
     return this.cartQuantity$;
+  }
+
+  public get cartItems(): CartItem[] {
+    const cartItems = this._localStorageService.getData<CartItem[]>(environment.cartStorageKey) ?? [];
+    return cartItems;
   }
 
 }

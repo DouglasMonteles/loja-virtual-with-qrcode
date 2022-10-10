@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import QrScanner from 'qr-scanner';
+import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 import { QrcodeScannerService } from 'src/app/services/qrcode-scanner.service';
 
 @Component({
@@ -18,6 +20,7 @@ export class QrcodeScannerComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     private _qrCodeScannerService: QrcodeScannerService,
+    private _productService: ProductService,
   ) { }
 
   ngOnInit(): void {
@@ -35,14 +38,23 @@ export class QrcodeScannerComponent implements OnInit, AfterViewInit, OnDestroy 
     this.isActiveScanner = false;
 
     const onCameraReady = (result: QrScanner.ScanResult) => {
+      let timeoutId: any = 0;
+      clearTimeout(timeoutId);
+
       console.log('resultado: ');
       console.log(result);
       this.qrScanner.pause(true);
 
-      alert('Você será redirecionado para: ' + result.data);
-      window.location.href = result.data;
+      result.data = JSON.stringify({
+        "id": 4,
+        "name": "Teste 2",
+        "price": 1.00,
+        "description": ""
+      });
 
-      setTimeout(() => this.qrScanner.start(), 3000);
+      this._productService.addCartItemWithWS(JSON.parse(result.data)).subscribe();
+
+      timeoutId = setTimeout(() => this.qrScanner.start(), 1000);
     }
 
     this.qrScanner = this._qrCodeScannerService.openCamera(

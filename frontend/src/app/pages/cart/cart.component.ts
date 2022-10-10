@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { CartItem } from 'src/app/models/cart-item.model';
+import { CartService } from 'src/app/services/cart.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import { environment } from 'src/environments/environment';
 import * as Stomp from 'stompjs';
@@ -12,14 +13,16 @@ import * as Stomp from 'stompjs';
 export class CartComponent implements OnInit, OnDestroy {
 
   stompClient: Stomp.Client = {} as Stomp.Client;
-  products: Product[] = [{ id:1, name: 'teste', price: 12 },{ id:1, name: 'teste', price: 12 }];
+  cartItems: CartItem[] = [];
 
   constructor(
     private _wsService: WebSocketService,
-  ) { }
+    private _cartService: CartService,
+  ) {}
 
   ngOnInit() {
     this.wsConnection();
+    this.cartItems = this._cartService.cartItems;
   }
 
   public wsConnection(): void {
@@ -29,7 +32,10 @@ export class CartComponent implements OnInit, OnDestroy {
       console.log(frame);
       this.stompClient.subscribe('/user/topic/product-added', (message) => {
         const product = JSON.parse(message.body);
-        this.products = [...this.products, product];
+        this._cartService.addCartItem(product);
+        this.cartItems = this._cartService.cartItems;
+        console.log(message.body);
+        console.log(this.cartItems);
       });
     },
 

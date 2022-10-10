@@ -18,7 +18,7 @@
         Scannear Produtos
       </a>
       <a mat-list-item routerLink="/cart" routerLinkActive="active">
-        Carrinho [{{(cartItemsQuantity$ | async) ?? 0}}]
+        Carrinho [{{(cartItemsQuantity$ | async) ?? quantityOfCartItems}}]
       </a>
     </mat-nav-list>
   </mat-sidenav>

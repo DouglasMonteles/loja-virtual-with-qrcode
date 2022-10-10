@@ -30,4 +30,8 @@ export class SideNavComponent  implements OnInit {
 
   }
 
+  public get quantityOfCartItems(): number {
+    return this._cartService.getQuantityOfCartItems();
+  }
+
 }
