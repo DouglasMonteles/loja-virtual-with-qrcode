@@ -32,10 +32,10 @@
     {
       "name": "products-api",
       "urls": [
-        "http://192.168.15.12:8080/api/products"
+        "https://192.168.15.10:8080/api/products"
       ],
       "cacheConfig": {
-        "strategy": "performance",
+        "strategy": "freshness",
         "maxSize": 10000,
         "maxAge": "10h",
         "timeout": "5s"

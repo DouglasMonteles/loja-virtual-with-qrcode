@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'http://localhost:8080/api',
-  baseWebSocketUrl: 'http://localhost:8080/api/product-ws',
+  baseApiUrl: 'https://192.168.15.10:8080/api',
+  baseWebSocketUrl: 'https://192.168.15.10:8080/api/product-ws',
   cartStorageKey: 'cart-storage-key',
 };
 

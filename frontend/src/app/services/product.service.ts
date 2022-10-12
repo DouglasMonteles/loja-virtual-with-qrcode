@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   public addCartItemWithWS(product: Product): Observable<void> {
-    return this._http.post<void>(`${environment.baseApiUrl}/products/1`, product);
+    return this._http.post<void>(`${environment.baseApiUrl}/products/user/1`, product);
   }
 
 }

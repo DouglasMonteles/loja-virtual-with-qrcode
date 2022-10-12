@@ -42,9 +42,7 @@ export class CartService {
 
   public getQuantityOfCartItems(): number {
     const cartItems = this._localStorageService.getData<CartItem[]>(environment.cartStorageKey) ?? [];
-    return cartItems
-      .map(item => item.quantity)
-      .reduce((prev, curr) => prev + curr, 0);
+    return cartItems.length;
   }
 
   public get cartQuantity(): Observable<number> {

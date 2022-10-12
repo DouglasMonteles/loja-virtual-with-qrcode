@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-ssl": "ng serve --ssl --ssl-cert /home/douglas/localhost.pem --ssl-key /home/douglas/localhost-key.pem",
+    "start-http-server-ssl": "cd dist/frontend && http-server -S -C /home/douglas/Documentos/www/certs/192.168.15.10.pem -K /home/douglas/Documentos/www/certs/192.168.15.10-key.pem",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -23,6 +25,7 @@
     "@angular/service-worker": "^14.2.0",
     "@stomp/rx-stomp": "^1.1.4",
     "@stomp/stompjs": "^6.1.2",
+    "angularx-qrcode": "^14.0.0",
     "net": "^1.0.2",
     "qr-scanner": "^1.4.1",
     "rxjs": "~7.5.0",
